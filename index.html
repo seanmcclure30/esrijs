@@ -28,6 +28,16 @@
           zoom: 12, // Zoom level
           container: "viewDiv" // Div element
           });
+          
+          // Basemap Menu
+          const basemapGallery = new BasemapGallery({
+        view: view, // The view the basemap will change on
+        source: {  // Optional: to limit to ArcGIS Online basemaps
+          portal: {
+            url: "https://www.arcgis.com",
+            useVectorBasemaps: true  // Use vector basemaps from ArcGIS Online
+          }
+        }
       });  
    </script>
 
