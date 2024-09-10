@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Hello, world! I am using Git!</title>
+  <title>Hello, Map!</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
 
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
+
+
+  <script>  
+    require([
+      "esri/config",
+      "esri/Map",
+      "esri/views/MapView"
+    ], function(esriConfig, Map, MapView) {
+      
+      esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurIfW5ZPXHLc4FtZkxnMyWUSM7DLdf-PZEaFojHZCloSCDVjmznHOKOFGGtR6c_rc3eIZd1Mbs5C3ofJpAURK_97yjKeTbsxNitkxTiQPPYAh09EIai0Bj1oAsjFiUFhpK5G5U82Ea7mlH9KkoorRwpJkUndjEZhpARCDUo5RKtxYu6ueHouJ1boxPKTDk4C3jwcPYqJdWoE-HtHOoLseDfSwMffu6woYDdNVtWbrbTTlAT1_ooT7wXqT"
+      const map = new Map({ 
+        basemap: "arcgis-topographic" // Basemap layer service 
+        });
+      });  
+   </script>
+
+
+  <style>
+    html,
+    body,
+    #viewDiv {  
+      padding: 0;
+      margin: 0;  
+      height: 100%;  
+      width: 100%;  
+      }  
+    </style>
+    
+    
 </head>
 <body>
-  <h1>Hello, world! I am using Git!</h1>
+  <div id="viewDiv"></div> 
 </body>
 </html>
