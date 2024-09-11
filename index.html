@@ -49,16 +49,20 @@
         view.ui.add(locate, "top-left");
 
         // Create custom basemaps
-        const topographicBasemap = new Basemap({
+        const OceanBasemap = new Basemap({
           portalItem: {
-            id: "0f23b6c6b87b4b049b1b6de81b65b273" // Topographic
-          }
+            id: "5ae9e138a17842688b0b79283a4353f6" // Ocean
+          },
+          thumbnailUrl:
+          "https://www.arcgis.com/sharing/rest/content/items/5ae9e138a17842688b0b79283a4353f6/info/thumbnail/oceans_5_0_gulf.jpg"
         });
 
-        const streetsBasemap = new Basemap({
+        const ColoredPencialBasemap = new Basemap({
           portalItem: {
-            id: "6d8cdbedc39b40fbd29e4b7d0b521b34" // Streets
-          }
+            id: "826498a48bd0424f9c9315214f2165d4" // Colored Pencial
+          },
+          thumbnailUrl:
+          "https://www.arcgis.com/sharing/rest/content/items/826498a48bd0424f9c9315214f2165d4/info/thumbnail/thumbnail1580490854424.jpeg"
         });
 
         // Basemap Gallery Widget
