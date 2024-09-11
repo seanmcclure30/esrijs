@@ -68,12 +68,17 @@
         // Basemap Gallery Widget
         const basemapGallery = new BasemapGallery({
           view: view, // The view the basemap will change on
-          source: [topographicBasemap, streetsBasemap] // Only show these basemaps
+          source: [OpenStreetMapBasemap, DarkGrayCanvasBasemap] // Only show these basemaps
         });
 
         // Add BasemapGallery to the UI
         view.ui.add(basemapGallery, "top-right");
+        
+        // Optional: Verify the basemap gallery widget is added
+        console.log("BasemapGallery widget added.");
 
+      }).otherwise(function(error) {
+        console.error("Error loading view:", error);
       });
     });  
   </script>
@@ -92,4 +97,5 @@
   <div id="viewDiv"></div> 
 </body>
 </html>
+
 
