@@ -49,36 +49,27 @@
         view.ui.add(locate, "top-left");
 
         // Create custom basemaps
-        const OpenStreetMapBasemap = new Basemap({
+        const topographicBasemap = new Basemap({
           portalItem: {
-            id: "b834a68d7a484c5fb473d4ba90d35e71" // OpenStreetMap
-          },
-          thumbnailUrl:
-          "https://www.arcgis.com/sharing/rest/content/items/b834a68d7a484c5fb473d4ba90d35e71/info/thumbnail/thumbnail1578326212401.jpeg"
+            id: "0f23b6c6b87b4b049b1b6de81b65b273" // Topographic
+          }
         });
 
-        const DarkGrayCanvasBasemap = new Basemap({
+        const streetsBasemap = new Basemap({
           portalItem: {
-            id: "358ec1e175ea41c3bf5c68f0da11ae2b" // Dark Gray Canvas
-          },
-          thumbnailUrl:
-          "https://www.arcgis.com/sharing/rest/content/items/358ec1e175ea41c3bf5c68f0da11ae2b/info/thumbnail/thumbnail1561649841835.jpeg"
+            id: "6d8cdbedc39b40fbd29e4b7d0b521b34" // Streets
+          }
         });
 
         // Basemap Gallery Widget
         const basemapGallery = new BasemapGallery({
           view: view, // The view the basemap will change on
-          source: [OpenStreetMapBasemap, DarkGrayCanvasBasemap] // Only show these basemaps
+          source: [topographicBasemap, streetsBasemap] // Only show these basemaps
         });
 
         // Add BasemapGallery to the UI
         view.ui.add(basemapGallery, "top-right");
-        
-        // Optional: Verify the basemap gallery widget is added
-        console.log("BasemapGallery widget added.");
 
-      }).otherwise(function(error) {
-        console.error("Error loading view:", error);
       });
     });  
   </script>
