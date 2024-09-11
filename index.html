@@ -16,9 +16,8 @@
       "esri/views/MapView",
       "esri/widgets/BasemapGallery",
       "esri/widgets/Locate",
-      "esri/widgets/Search",
       "esri/Basemap"
-    ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Basemap) {
+    ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Basemap) {
       
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurIfW5ZPXHLc4FtZkxnMyWUSM7DLdf-PZEaFojHZCloSCDVjmznHOKOFGGtR6c_rc3eIZd1Mbs5C3ofJpAURK_97yjKeTbsxNitkxTiQPPYAh09EIai0Bj1oAsjFiUFhpK5G5U82Ea7mlH9KkoorRwpJkUndjEZhpARCDUo5RKtxYu6ueHouJ1boxPKTDk4C3jwcPYqJdWoE-HtHOoLseDfSwMffu6woYDdNVtWbrbTTlAT1_ooT7wXqT";
 
@@ -69,19 +68,11 @@
         // Basemap Gallery Widget
         const basemapGallery = new BasemapGallery({
           view: view, // The view the basemap will change on
-          source: [OpenStreetMapBasemap, DarkGrayCanvasBasemap] // Only show these basemaps
+          source: [topographicBasemap, streetsBasemap] // Only show these basemaps
         });
 
         // Add BasemapGallery to the UI
         view.ui.add(basemapGallery, "top-right");
-
-        // Search Widget
-        const searchWidget = new Search({
-          view: view // The view to which the search widget will be added
-        });
-
-        // Add Search widget to the UI
-        view.ui.add(searchWidget, "top-right");
 
       });
     });  
