@@ -31,33 +31,37 @@
         container: "viewDiv" // Div element
       });
 
-      // Locate Button Widget
-      const locate = new Locate({
-        view: view,   // Reference to the view
-        useHeadingEnabled: false,  // Disable using device heading
-        goToOverride: function(view, options) {
-          options.target.scale = 1500;  // Customize the zoom scale
-          return view.goTo(options.target);
-        }
-      });
+      // Wait for the view to load before adding widgets
+      view.when(function() {
 
-      // Add Locate button to the top left of the view
-      view.ui.add(locate, "top-left");
-
-      // Basemap Gallery Widget
-      const basemapGallery = new BasemapGallery({
-        view: view, // The view the basemap will change on
-        source: {  // Limit basemaps to ArcGIS Online basemaps
-          portal: {
-            url: "https://www.arcgis.com",
-            useVectorBasemaps: true  // Use vector basemaps from ArcGIS Online
+        // Locate Button Widget
+        const locate = new Locate({
+          view: view,   // Reference to the view
+          useHeadingEnabled: false,  // Disable using device heading
+          goToOverride: function(view, options) {
+            options.target.scale = 1500;  // Customize the zoom scale
+            return view.goTo(options.target);
           }
-        }
+        });
+
+        // Add Locate button to the top left of the view
+        view.ui.add(locate, "top-left");
+
+        // Basemap Gallery Widget
+        const basemapGallery = new BasemapGallery({
+          view: view, // The view the basemap will change on
+          source: {  // Limit basemaps to ArcGIS Online basemaps
+            portal: {
+              url: "https://www.arcgis.com",
+              useVectorBasemaps: true  // Use vector basemaps from ArcGIS Online
+            }
+          }
+        });
+
+        // Add BasemapGallery to the UI
+        view.ui.add(basemapGallery, "top-right");
+
       });
-
-      // Add BasemapGallery to the UI
-      view.ui.add(basemapGallery, "top-right");
-
     });  
   </script>
 
@@ -75,3 +79,4 @@
   <div id="viewDiv"></div> 
 </body>
 </html>
+
