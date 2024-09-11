@@ -15,8 +15,9 @@
       "esri/Map",
       "esri/views/MapView",
       "esri/widgets/BasemapGallery",
-      "esri/widgets/Locate"
-    ], function(esriConfig, Map, MapView, BasemapGallery, Locate) {
+      "esri/widgets/Locate",
+      "esri/Basemap"
+    ], function(esriConfig, Map, MapView, BasemapGallery, Locate, Basemap) {
       
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurIfW5ZPXHLc4FtZkxnMyWUSM7DLdf-PZEaFojHZCloSCDVjmznHOKOFGGtR6c_rc3eIZd1Mbs5C3ofJpAURK_97yjKeTbsxNitkxTiQPPYAh09EIai0Bj1oAsjFiUFhpK5G5U82Ea7mlH9KkoorRwpJkUndjEZhpARCDUo5RKtxYu6ueHouJ1boxPKTDk4C3jwcPYqJdWoE-HtHOoLseDfSwMffu6woYDdNVtWbrbTTlAT1_ooT7wXqT";
 
@@ -47,15 +48,23 @@
         // Add Locate button to the top left of the view
         view.ui.add(locate, "top-left");
 
+        // Create custom basemaps
+        const topographicBasemap = new Basemap({
+          portalItem: {
+            id: "0f23b6c6b87b4b049b1b6de81b65b273" // Topographic
+          }
+        });
+
+        const streetsBasemap = new Basemap({
+          portalItem: {
+            id: "6d8cdbedc39b40fbd29e4b7d0b521b34" // Streets
+          }
+        });
+
         // Basemap Gallery Widget
         const basemapGallery = new BasemapGallery({
           view: view, // The view the basemap will change on
-          source: {  // Limit basemaps to ArcGIS Online basemaps
-            portal: {
-              url: "https://www.arcgis.com",
-              useVectorBasemaps: true  // Use vector basemaps from ArcGIS Online
-            }
-          }
+          source: [topographicBasemap, streetsBasemap] // Only show these basemaps
         });
 
         // Add BasemapGallery to the UI
@@ -79,4 +88,5 @@
   <div id="viewDiv"></div> 
 </body>
 </html>
+
 
