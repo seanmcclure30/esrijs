@@ -9,50 +9,59 @@
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
 
-
   <script>  
     require([
       "esri/config",
       "esri/Map",
-      "esri/views/MapView"
-    ], function(esriConfig, Map, MapView) {
+      "esri/views/MapView",
+      "esri/Basemap"
+    ], function(esriConfig, Map, MapView, Basemap) {
       
-      esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurIfW5ZPXHLc4FtZkxnMyWUSM7DLdf-PZEaFojHZCloSCDVjmznHOKOFGGtR6c_rc3eIZd1Mbs5C3ofJpAURK_97yjKeTbsxNitkxTiQPPYAh09EIai0Bj1oAsjFiUFhpK5G5U82Ea7mlH9KkoorRwpJkUndjEZhpARCDUo5RKtxYu6ueHouJ1boxPKTDk4C3jwcPYqJdWoE-HtHOoLseDfSwMffu6woYDdNVtWbrbTTlAT1_ooT7wXqT"
+      esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurIfW5ZPXHLc4FtZkxnMyWUSM7DLdf-PZEaFojHZCloSCDVjmznHOKOFGGtR6c_rc3eIZd1Mbs5C3ofJpAURK_97yjKeTbsxNitkxTiQPPYAh09EIai0Bj1oAsjFiUFhpK5G5U82Ea7mlH9KkoorRwpJkUndjEZhpARCDUo5RKtxYu6ueHouJ1boxPKTDk4C3jwcPYqJdWoE-HtHOoLseDfSwMffu6woYDdNVtWbrbTTlAT1_ooT7wXqT";
+
       const map = new Map({ 
         basemap: "hybrid" // Basemap layer service 
-        });
+      });
 
-        const view = new MapView({
-          map: map,
-          center: [-97.2771, 27.6835], // Longitude, latitude
-          zoom: 12, // Zoom level
-          container: "viewDiv" // Div element
-          });
-          
-          // Basemap Menu
-          const basemapGallery = new BasemapGallery({
-        view: view, // The view the basemap will change on
-        source: {  // Optional: to limit to ArcGIS Online basemaps
-          portal: {
-            url: "https://www.arcgis.com",
-            useVectorBasemaps: true  // Use vector basemaps from ArcGIS Online
-          }
-        }
-      });  
-   </script>
+      const view = new MapView({
+        map: map,
+        center: [-97.2771, 27.6835], // Longitude, latitude
+        zoom: 12, // Zoom level
+        container: "viewDiv" // Div element
+      });
 
+      // Basemap menu
+      const custombasemap = [ 
+        new Basemap({
+          portalItem: {
+            id: "7378ae8b471940cb9f9d114b67cd09b8" // Topographic (with Contours and Hillshade)
+          },
+          thumbnailUrl: "https://www.arcgis.com/sharing/rest/content/items/7378ae8b471940cb9f9d114b67cd09b8/info/thumbnail/thumbnail1659431486158.png"
+        }),
+        new Basemap({
+          portalItem: {
+            id: "826498a48bd0424f9c9315214f2165d4" // Colored Pencil Map
+          },
+          thumbnailUrl: "https://www.arcgis.com/sharing/rest/content/items/826498a48bd0424f9c9315214f2165d4/info/thumbnail/thumbnail1633647713561.png"
+        }),
+        new Basemap({
+          portalItem: {
+            id: "c50de463235e4161b206d000587af18b" // Navigation
+          },
+          thumbnailUrl: "https://www.arcgis.com/sharing/rest/content/items/c50de463235e4161b206d000587af18b/info/thumbnail/thumbnail1561651358957.jpeg"
+        })
+      ];
+    });  
+  </script>
 
   <style>
-    html,
-    body,
-    #viewDiv {  
+    html, body, #viewDiv {  
       padding: 0;
       margin: 0;  
       height: 100%;  
       width: 100%;  
-      }  
-    </style>
-    
+    }  
+  </style>
     
 </head>
 <body>
