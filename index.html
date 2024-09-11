@@ -14,8 +14,9 @@
       "esri/config",
       "esri/Map",
       "esri/views/MapView",
-      "esri/Basemap"
-    ], function(esriConfig, Map, MapView, Basemap) {
+      "esri/widgets/BasemapGallery",
+      "esri/widgets/Locate"
+    ], function(esriConfig, Map, MapView, BasemapGallery, Locate) {
       
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurIfW5ZPXHLc4FtZkxnMyWUSM7DLdf-PZEaFojHZCloSCDVjmznHOKOFGGtR6c_rc3eIZd1Mbs5C3ofJpAURK_97yjKeTbsxNitkxTiQPPYAh09EIai0Bj1oAsjFiUFhpK5G5U82Ea7mlH9KkoorRwpJkUndjEZhpARCDUo5RKtxYu6ueHouJ1boxPKTDk4C3jwcPYqJdWoE-HtHOoLseDfSwMffu6woYDdNVtWbrbTTlAT1_ooT7wXqT";
 
@@ -30,30 +31,33 @@
         container: "viewDiv" // Div element
       });
 
-      //Locate Map Button
+      // Locate Button Widget
+      const locate = new Locate({
+        view: view,   // Reference to the view
+        useHeadingEnabled: false,  // Disable using device heading
+        goToOverride: function(view, options) {
+          options.target.scale = 1500;  // Customize the zoom scale
+          return view.goTo(options.target);
+        }
+      });
+
+      // Add Locate button to the top left of the view
       view.ui.add(locate, "top-left");
 
-      // Basemap menu
-      const custombasemap = [ 
-        new Basemap({
-          portalItem: {
-            id: "7378ae8b471940cb9f9d114b67cd09b8" // Topographic (with Contours and Hillshade)
-          },
-          thumbnailUrl: "https://www.arcgis.com/sharing/rest/content/items/7378ae8b471940cb9f9d114b67cd09b8/info/thumbnail/thumbnail1659431486158.png"
-        }),
-        new Basemap({
-          portalItem: {
-            id: "826498a48bd0424f9c9315214f2165d4" // Colored Pencil Map
-          },
-          thumbnailUrl: "https://www.arcgis.com/sharing/rest/content/items/826498a48bd0424f9c9315214f2165d4/info/thumbnail/thumbnail1633647713561.png"
-        }),
-        new Basemap({
-          portalItem: {
-            id: "c50de463235e4161b206d000587af18b" // Navigation
-          },
-          thumbnailUrl: "https://www.arcgis.com/sharing/rest/content/items/c50de463235e4161b206d000587af18b/info/thumbnail/thumbnail1561651358957.jpeg"
-        })
-      ];
+      // Basemap Gallery Widget
+      const basemapGallery = new BasemapGallery({
+        view: view, // The view the basemap will change on
+        source: {  // Limit basemaps to ArcGIS Online basemaps
+          portal: {
+            url: "https://www.arcgis.com",
+            useVectorBasemaps: true  // Use vector basemaps from ArcGIS Online
+          }
+        }
+      });
+
+      // Add BasemapGallery to the UI
+      view.ui.add(basemapGallery, "top-right");
+
     });  
   </script>
 
