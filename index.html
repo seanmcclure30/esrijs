@@ -73,7 +73,12 @@
 
         // Add BasemapGallery to the UI
         view.ui.add(basemapGallery, "top-right");
+        
+        // Optional: Verify the basemap gallery widget is added
+        console.log("BasemapGallery widget added.");
 
+      }).otherwise(function(error) {
+        console.error("Error loading view:", error);
       });
     });  
   </script>
